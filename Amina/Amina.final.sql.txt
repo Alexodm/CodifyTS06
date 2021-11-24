@@ -1,0 +1,28 @@
+Задача 1) 
+SELECT * FROM Persons
+WHERE lastname LIKE ‘%я’
+       
+Задача 2)
+ вариант «а»
+SELECT OrderID, Orderdate
+FROM Orders
+WHERE Orderdate = 08-03-2013;
+SELECT OrderID, Productname, Price
+FROM Orders
+WHERE orderID >………<;
+
+Вариант «б»
+SELECT Orders. OrderID, Products. OrderID, Productname,Price
+FROM orders RIGHT JOIN products
+ON Orders. orderID = Products. orderID
+Where orderdate = 08-03-2013
+SELECT DISTINCT Productname FROM Products;
+
+Задача 3)
+SELECT StudentID, Amount, Paymentdate
+FROM Payments
+WHERE Paymentdate LIKE %%-01-2013
+GROUP BY payment amount;
+SELECT * Students
+FROM Students
+WHERE StudentID = ……….;
