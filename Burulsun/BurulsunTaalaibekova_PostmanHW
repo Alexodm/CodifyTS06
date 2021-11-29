@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "100041d4-6726-47ac-aa42-a7154306b809",
+		"name": "HWCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"111222\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 201]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"id\": 111222,\r\n    \"username\": \"burulsun111222\",\r\n    \"firstName\": \"Burulsun\", \r\n    \"lastName\": \"Taalaibekova\", \r\n    \"email\": \"taalaibekovab98@gmail.com\", \r\n    \"password\": \"password111222\", \r\n    \"phone\": \"123456789\", \r\n    \"userStatus\": 1 \r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{myUrl}}/user",
+					"host": [
+						"{{myUrl}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the user by username",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var schema = {\r",
+							"    \"items\": {\r",
+							"        \"type\": \"boolean\",\r",
+							"        \"type\": \"string\"\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"var data1 = [true, false];\r",
+							"var data2 = [\"dataString\", \"dataString2\"];\r",
+							"\r",
+							"pm.test('Schema is valid', function () {\r",
+							"    pm.expect(tv4.validate(data1, schema)).to.be.true;\r",
+							"    pm.expect(tv4.validate(data2, schema)).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "ntlm"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{myUrl}}/user/burulsun111222",
+					"host": [
+						"{{myUrl}}"
+					],
+					"path": [
+						"user",
+						"burulsun111222"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete the user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"delVar\", \"delVarValue\");\r",
+							"pm.collectionVariables.get(\"delVar\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{myUrl}}/user/burulsun111222",
+					"host": [
+						"{{myUrl}}"
+					],
+					"path": [
+						"user",
+						"burulsun111222"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the user by username again",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "ntlm"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{myUrl}}/user/burulsun111222",
+					"host": [
+						"{{myUrl}}"
+					],
+					"path": [
+						"user",
+						"burulsun111222"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "myUrl",
+			"value": "https://petstore.swagger.io/v2\n"
+		},
+		{
+			"key": "variable_key",
+			"value": ""
+		},
+		{
+			"key": "delVar",
+			"value": ""
+		}
+	]
+}
